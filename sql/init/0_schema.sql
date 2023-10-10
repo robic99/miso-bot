@@ -107,6 +107,33 @@ CREATE TABLE IF NOT EXISTS fish_type (
     PRIMARY KEY (user_id)
 );
 
+-- This table will be used for fishy streaks.
+-- user_hash is a hash created from the two users ids, where they are combined into one big int or string when looking up a streak.
+-- this table should probably split up or used with the other fish dbs, such as user_id
+-- However, most of these just nice to have stats on fishies.
+CREATE TABLE IF NOT EXISTS fish_streaks (
+    user_hash VARCHAR(256),
+    user_one_id BIGINT,
+    user_two_id BIGINT,
+    user_one_last_fishy DATETIME DEFAULT NULL,
+    user_two_last_fishy DATETIME DEFAULT NULL,
+    user_one_trash INT DEFAULT 0,
+    user_two_trash INT DEFAULT 0,
+    user_one_common INT DEFAULT 0,
+    user_two_common INT DEFAULT 0,
+    user_one_uncommon INT DEFAULT 0,
+    user_two_uncommon INT DEFAULT 0,
+    user_one_rare INT DEFAULT 0,
+    user_two_rare INT DEFAULT 0,
+    user_one_legendary INT DEFAULT 0,
+    user_two_legendary INT DEFAULT 0,
+    user_one_biggest_fish INT DEFAULT 0,
+    user_two_biggest_fish INT DEFAULT 0,
+    user_one_fishy_count INT DEFAULT 0,
+    user_two_fishy_count INT DEFAULT 0,
+    PRIMARY KEY (user_hash, user_one_id, user_two_id)
+)
+
 CREATE TABLE IF NOT EXISTS minecraft_server (
     guild_id BIGINT,
     server_address VARCHAR(128),

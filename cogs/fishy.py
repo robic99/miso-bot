@@ -27,6 +27,8 @@ class Fishy(commands.Cog):
         "Sorry, but you have to wait {time} to fish again!",
         "Not so fast! Please wait {time}",
         "You must wait {time} to fish again!",
+        # Please let me keep this :pleading_emoji:
+        "A Robic seems to be blocking the path. Please wait {time} for him to move from the fishing spot.",
     ]
     TRASH_ICONS = [
         ":moyai:",
@@ -175,7 +177,13 @@ class Fishy(commands.Cog):
                 amount if gift else 0,
                 ctx.message.created_at,
             )
+            if gift:
+                await self.fishy_streak(ctx.author, user, catch, amount)
 
+    async def fishy_streak(author, user, catch, amount):
+        """Update fishy streak"""
+        return
+    
     @commands.command(aliases=["fintimer", "fisytimer", "foshytimer", "ft"])
     async def fishytimer(self, ctx: commands.Context):
         """Check your fishy timer"""
